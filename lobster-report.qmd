@@ -1,5 +1,6 @@
 ---
 title: "Lobster Report"
 format: html
+author: Hannah Chaney
 ---
 
