@@ -12,11 +12,29 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 library(tidyr)
+library(here)
 ```
 
 ### Read in data
 ```{r}
-lobster_traps <- read_csv("data/Lobster_Trap_Counts_All_Years_20210519.csv")
+lobster_traps <- read_csv(here::here("data/Lobster_Trap_Counts_All_Years_20210519.csv"))
 ```
 
+### Convert missing values using mutate() and na_if()
+```{r}
+lobster_traps <- lobster_traps %>% 
+  mutate(TRAPS = na_if(TRAPS, -99999))
+unique(lobster_traps)
+```
+
+### Filter observations from Naples Reef
+```{r}
+not_napl <- lobster_traps %>% 
+  filter(SITE != "NAPL")
+```
+### Lobsters at Carpinteria Reef and trap floats greater than 20
+```{r}
+carp_reef_20 <- lobster_traps %>% 
+  filter(SITE == "CARP" & TRAPS > 20)
+```
 
