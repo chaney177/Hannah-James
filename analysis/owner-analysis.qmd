@@ -21,3 +21,24 @@ colnames(lobster_abundance)
 unique(lobster_abundance$SIZE_MM)
 ```
 
+#14.2
+
+```{r}
+lobster_abundance<- lobster_abundance %>%  mutate(SIZE_MM=na_if(SIZE_MM,-99999))
+
+unique(lobster_abundance$SIZE_MM)
+```
+#14.3- removing Naples Reef
+```{r}
+not_napl <- lobster_abundance %>% 
+    filter(SITE != "NAPL")
+
+unique(not_napl$SITE)
+```
+
+```{r}
+arroyo_big_carrapace<-lobster_abundance %>% filter(SITE== "AQUE") %>% filter(SIZE_MM> 70)
+
+head(arroyo_big_carrapace)
+```
+
